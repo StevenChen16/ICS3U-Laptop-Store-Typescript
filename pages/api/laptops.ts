@@ -14,13 +14,23 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Laptop
       columns: true,
       skip_empty_lines: true,
       cast: (value, context) => {
-        if (context.column === 'index') return parseInt(value);
+        // 强制数字类型转换
+        if (context.column === 'Price' || 
+            context.column === 'Rating' || 
+            context.column === 'index') {
+          return Number(value);
+        }
+        // 布尔值转换
+        if (context.column === 'Touchscreen') {
+          return value.toLowerCase() === 'true';
+        }
         return value;
       }
     });
+    
     res.status(200).json(records);
   } catch (error) {
-    console.error('Error reading CSV:', error);
+    console.error('Error:', error);
     res.status(500).json([]);
   }
 }
