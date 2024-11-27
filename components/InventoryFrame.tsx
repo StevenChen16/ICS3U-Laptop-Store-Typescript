@@ -27,10 +27,11 @@ export default function InventoryFrame() {
         {laptops.map(laptop => (
           <div key={laptop.index} className="border rounded-lg p-4 shadow-sm">
             <Image
-              src={`/images/laptops/laptop_${laptop.index}.jpg`}
+              src={`/images/laptops/laptop${laptop.index || '1'}.jpg`}
               alt={laptop.Model}
               width={300}
               height={200}
+              unoptimized
               className="w-full object-cover mb-4"
             />
             <h2 className="font-bold text-lg">{laptop.Brand} {laptop.Model}</h2>
