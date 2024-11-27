@@ -24,6 +24,7 @@ export interface Laptop {
   Touchscreen: boolean;
   'Weight (lbs)': number;
   Hyperlink: string;
+  matchScore?: number;  
 }
 
 export interface FilterValues {
